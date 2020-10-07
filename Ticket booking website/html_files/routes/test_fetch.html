@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible",content="ie-edge"/>
+
+    </head>
+    <body>
+        <h1>
+            fetch test
+        </h1>
+        <img id="op" width="480"/>
+        <script>
+            // this example uses .then method
+
+            fetch_test().catch(error=>{
+                console.log("error!");
+                console.error(error);
+
+            });
+
+            console.log("fetched image");
+            async function fetch_test()
+            {
+                const response= await fetch('https://comicvine1.cbsistatic.com/uploads/original/14/146991/5001026-0161459452-goku_.jpg');
+                const blob= await response.blob();
+                document.getElementById('op').src=URL.createObjectURL(blob);
+            }
+
+
+
+
+
+
+      /* fetch('https://comicvine1.cbsistatic.com/uploads/original/14/146991/5001026-0161459452-goku_.jpg').then(response=>{
+           console.log(response);
+           return response.blob();
+       }).then(blob=>{
+           console.log(blob);
+           document.getElementById('op').src=URL.createObjectURL(blob);
+       })*/
+   
+      
+   
+       </script>
+     
+    </body>
+    
+</html>

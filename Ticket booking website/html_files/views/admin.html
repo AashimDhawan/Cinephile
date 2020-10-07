@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        admin
+    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible",content="ie-edge"/>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <style>
+        button{
+            height:25px;width:75px
+        }
+		
+		h3{
+
+
+
+    color:#524e43;
+	text-shadow: 1px 1px #000000;
+	font-weight: 700;
+
+		}
+    </style>
+</head>
+<body>
+ <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Cinephile </a>
+              </div>
+              <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li class="nav navbar-nav"><a href="nowshowing.html">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="active"><a href="admin.html">Admin <i class="fa fa-user-plus"></i></a></li>
+                  <li class="nav navbar-nav"><a href="login.html">Logout <i class="fa fa-user"></i></a></li>
+                </ul>
+              </div>
+            </div>
+           </nav>
+		   <br><br><br><br><Br>
+    <center><h3> Admin page</h3>
+    <br><br><br>
+
+    <input type="text" placeholder="movie name" id="del_movie"></input><br>
+    <button onclick="delete_movie()"> delete </button>
+    <br><br>
+
+    <input type="text" placeholder="movie name" id="add_movie_name"></input><br>
+    <input type="text" placeholder="genre" id ="add_movie_genre"></input><br>
+    <button onclick="add_movie()">add</button>
+    <br><br>
+
+    <input type="text" id="sm" placeholder="search"><br>
+    <button value="search " onclick="getMovie()">search</buttom>
+    <br><br><br>
+	<div>
+    <span id="res_data"></span>
+    <br>
+	</div>
+    
+    </center>
+   <script src="../static/js_files/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible",content="ie-edge"/>
+	
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <title>
+            nowshowing
+        </title>
+		<style>
+* {
+  box-sizing: border-box;
+}
+h3{
+font-weight: 700;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px 10px 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+#sn{
+	 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:#a8ad9e;
+	text-shadow: 3px 3px #4b75ad;
+	font-weight: 700;
+	font-size: 5em;
+}
+.now{
+	
+    color:#000000;
+	text-shadow: 2px 2px #FF0000;
+	font-weight: 700;
+	font-size: 2em;
+}
+button {
+  margin-top: 20px;
+  line-height: 60px;
+  font-weight: bold;
+  padding: 0 40px;
+  background: #e3c162;
+  border: none;
+}
+button:hover {
+  background: #ebd69b;
+}
+
+</style>
+    </head>
+	<script>
+	var data;
+	function list() {
+		
+		var xmlhttp = new XMLHttpRequest(); 
+		xmlhttp.open("GET", "http://localhost:3000/movies", true);
+		xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			//console.log(this.responseText);
+			 var x= document.getElementById('list');
+			var data= JSON.parse(this.responseText);
+			console.log(data.count);
+			for(let i=0;i<data.count;i++)
+			{
+			var div=document.createElement("div");
+			div.classList.add("column");
+			var card=document.createElement("div");
+			card.classList.add("card");
+			var name =document.createTextNode(data.movies[i].name);
+			var genre=document.createTextNode(data.movies[i].genre);
+			var button = document.createElement("button");
+			button.setAttribute("id", name);
+			button.addEventListener("click", book);
+			button.innerHTML = "Book";			
+				var p=document.createElement("p");
+				var h=document.createElement("h3");
+				h.appendChild(name);
+				p.appendChild(genre);
+				card.appendChild(h);
+				card.appendChild(p);
+				card.appendChild(button);
+				div.appendChild(card);
+                x.appendChild(div);
+				//x.apendChild(br)
+				}
+		}
+		};
+		
+		xmlhttp.send();
+	};
+	
+	function book(event){
+		//var selected_movie= name ;
+		var movie_name=event.target.parentNode.childNodes[0].innerText;
+		console.log(movie_name);
+		localStorage.setItem("selected_movie", movie_name);
+		window.open("bookingPage.html", "_self");
+	};
+	</script>
+    <body onload="list()">
+	
+	 <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Cinephile </a>
+              </div>
+              <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="nowshowing.html">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="admin.html">Admin <i class="fa fa-user-plus"></i></a></li>
+                  <li class="nav navbar-nav"><a href="login.html">Logout <i class="fa fa-user"></i></a></li>
+                </ul>
+              </div>
+            </div>
+           </nav>
+      <br><Br><BR><br>     
+	  <center><span id="sn"> Cinephile</span><center>
+	  <center><span class="now"> Now Showing</span><center>
+ 
+
+	<div id= "list">
+	</div>
+	
+	</body>
+	</html>
